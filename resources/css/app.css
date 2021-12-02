@@ -1,0 +1,16 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "node-snackbar/dist/snackbar.min.css";
+
+@font-face {
+    font-family: "Google Sans";
+    src: url("../font/GoogleSans-Regular.ttf");
+}
+
+* {
+    font-family: "Google Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
