@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -36,6 +38,7 @@ class DatabaseSeeder extends Seeder
         }
 
         $departments = [
+            "sys_admin" => "System Administration",
             "cas" => "College of Arts and Sciences",
             "ccis" => "College of Computer and Information Sciences",
             "cba" => "College of Business and Accountancy",
@@ -76,7 +79,7 @@ class DatabaseSeeder extends Seeder
             "unit_head" => "Unit Head",
             "board" => "Board of Trustees",
             "accr" => "Accreditor",
-            "coll_press" => "College President",
+            "coll_pres" => "College President",
         ];
 
         extract($roles);
@@ -87,5 +90,15 @@ class DatabaseSeeder extends Seeder
                 "role_title" => $role,
             ]);
         }
+
+        // Add superadmin
+
+        DB::table("users")->insert([
+            "name" => "System Superadmin",
+            "dept_id" => 1,
+            "role_id" => 1,
+            "email" => "sysadmin@gmail.com",
+            "password" => Hash::make("sysadmin12345"),
+        ]);
     }
 }

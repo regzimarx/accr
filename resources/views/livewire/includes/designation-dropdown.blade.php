@@ -44,6 +44,10 @@
                 $limit_designation = ['purp', 'facu', 'inst', 'lib', 'lab', 'ppf', 'sps', 'socd', 'oa'];
             }
 
+            if (Auth::user()->role->code == 'coll_pres') {
+                $limit_designation = ['purp', 'facu', 'inst', 'lib', 'lab', 'ppf', 'sps', 'socd', 'oa'];
+            }
+
             if (Auth::user()->role->code == 'admin') {
                 $limit_designation = ['dc', 'purp', 'facu', 'inst', 'lib', 'lab', 'ppf', 'sps', 'socd', 'oa'];
             }

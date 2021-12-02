@@ -54,7 +54,9 @@
                     class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm block mt-1 w-full text-sm">
                     <option value="">Please select department</option>
                     @foreach (App\Models\Department::all() as $department)
-                        <option value="{{ $department->id }}">{{ $department->dept_name }}</option>
+                        <option value="{{ $department->id }}" @if ($department->dept_code == 'sys_admin')
+                            class="hidden"
+                    @endif>{{ $department->dept_name }}</option>
                     @endforeach
                 </select>
             </div>

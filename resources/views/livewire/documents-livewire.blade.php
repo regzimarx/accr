@@ -1,6 +1,6 @@
- <div class="mt-16">
+ <div class="mt-16 min-h-screen bg-blue-100" style="background-image: url('');">
 
-     <header class="bg-white">
+     <header class="bg-blue-200">
          <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
              <h2 class="font-medium text-lg text-gray-800 leading-tight text-center">
                  @if ($desig == null)
