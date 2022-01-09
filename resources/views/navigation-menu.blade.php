@@ -59,6 +59,10 @@
                         $limit_designation = ['dc', 'purp', 'facu', 'inst', 'lib', 'lab', 'ppf', 'sps', 'socd', 'oa'];
                     }
 
+                    if (Auth::user()->role->code == 'paascu') {
+                        $limit_designation = ['purp'];
+                    }
+
                     if (Auth::user()->role->code == 'admin') {
                         $sliced_limit_d = count($limit_designation) >= 4 ? array_slice($limit_designation, 0, 4) : $limit_designation;
                         $remaining_slice_limit_d = array_slice($limit_designation, 5);

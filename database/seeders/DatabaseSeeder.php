@@ -57,6 +57,8 @@ class DatabaseSeeder extends Seeder
             "lib" => "Library",
             "accr" => "Accreditor",
             "pres" => "President's Office",
+            "paascu" =>
+                "Philippine Accrediting Association of Schools, Colleges and Universities",
         ];
 
         extract($departments);
@@ -80,6 +82,7 @@ class DatabaseSeeder extends Seeder
             "board" => "Board of Trustees",
             "accr" => "Accreditor",
             "coll_pres" => "College President",
+            "paascu" => "PAASCU Coordinator",
         ];
 
         extract($roles);

@@ -6,6 +6,8 @@ use App\Models\Department;
 use App\Models\Document;
 use App\Models\Designation;
 use App\Models\FileRequest;
+use App\Models\Role;
+use App\Models\User;
 
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -233,6 +235,28 @@ class DocumentsLivewire extends Component
                         )
                         ->where("designation_id", $d->id)
                         ->select("documents.*", "name", "dept_name")
+                        ->paginate(10)
+                    : [];
+                break;
+            case "paascu":
+                $data = $this->designation
+                    ? Document::join("users", function ($join) {
+                        $join->on("uploaded_by", "=", "users.id")->wherein(
+                            "users.role_id",
+                            Role::where("code", "paascu")
+                                ->orWhere("code", "accr_co")
+                                ->select("id")
+                                ->get()
+                        );
+                    })
+                        ->join(
+                            "departments",
+                            "users.dept_id",
+                            "=",
+                            "departments.id"
+                        )
+                        ->where("designation_id", $d->id)
+                        ->select("documents.*", "users.*", "name", "dept_name")
                         ->paginate(10)
                     : [];
                 break;

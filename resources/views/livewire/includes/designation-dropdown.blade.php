@@ -52,6 +52,10 @@
                 $limit_designation = ['dc', 'purp', 'facu', 'inst', 'lib', 'lab', 'ppf', 'sps', 'socd', 'oa'];
             }
 
+            if (Auth::user()->role->code == 'paascu') {
+                $limit_designation = ['purp'];
+            }
+
         @endphp
         @foreach (App\Models\Designation::all() as $designation)
             @foreach ($limit_designation as $limit_d)
