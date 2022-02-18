@@ -38,6 +38,7 @@ class DocumentsLivewire extends Component
     public $designation_id;
     public $accessCode;
     public $designation;
+    public $search;
 
     protected $queryString = ["designation"];
 
@@ -133,6 +134,7 @@ class DocumentsLivewire extends Component
                         )
                         ->select("documents.*", "name", "dept_name")
                         ->where("designation_id", $d->id)
+                        ->where("title", "like", "%" . $this->search . "%")
                         ->paginate(10);
                 } else {
                     $data = [];
@@ -155,6 +157,11 @@ class DocumentsLivewire extends Component
                                     "departments.id"
                                 )
                                 ->where("designation_id", $d->id)
+                                ->where(
+                                    "title",
+                                    "like",
+                                    "%" . $this->search . "%"
+                                )
                                 ->select("documents.*", "name", "dept_name")
                                 ->paginate(10)
                             : Document::join(
@@ -171,6 +178,11 @@ class DocumentsLivewire extends Component
                                 )
                                 ->where("dept_id", Auth::user()->dept->id)
                                 ->where("designation_id", $d->id)
+                                ->where(
+                                    "title",
+                                    "like",
+                                    "%" . $this->search . "%"
+                                )
                                 ->select("documents.*", "name", "dept_name")
                                 ->paginate(10);
                 } else {
@@ -193,6 +205,7 @@ class DocumentsLivewire extends Component
                         )
                         ->where("uploaded_by", Auth::user()->id)
                         ->where("designation_id", $d->id)
+                        ->where("title", "like", "%" . $this->search . "%")
                         ->select("documents.*", "name", "dept_name")
                         ->paginate(10)
                     : [];
@@ -213,6 +226,7 @@ class DocumentsLivewire extends Component
                         )
                         ->where("dept_id", Auth::user()->dept->id)
                         ->where("designation_id", $d->id)
+                        ->where("title", "like", "%" . $this->search . "%")
                         ->select("documents.*", "name", "dept_name")
                         ->paginate(10);
                 } else {
@@ -234,6 +248,7 @@ class DocumentsLivewire extends Component
                             "departments.id"
                         )
                         ->where("designation_id", $d->id)
+                        ->where("title", "like", "%" . $this->search . "%")
                         ->select("documents.*", "name", "dept_name")
                         ->paginate(10)
                     : [];
@@ -244,7 +259,7 @@ class DocumentsLivewire extends Component
                         $join->on("uploaded_by", "=", "users.id")->wherein(
                             "users.role_id",
                             Role::where("code", "paascu")
-                                ->orWhere("code", "accr_co")
+                                ->orWhere("code", "coll_co")
                                 ->select("id")
                                 ->get()
                         );
@@ -256,6 +271,7 @@ class DocumentsLivewire extends Component
                             "departments.id"
                         )
                         ->where("designation_id", $d->id)
+                        ->where("title", "like", "%" . $this->search . "%")
                         ->select("documents.*", "users.*", "name", "dept_name")
                         ->paginate(10)
                     : [];
