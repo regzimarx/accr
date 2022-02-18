@@ -24,7 +24,7 @@
                     }
 
                     if (Auth::user()->role->code == 'coll_co') {
-                        $limit_designation = ['purp', 'facu', 'inst', 'lib', 'lab', 'sps', 'ppf', 'socd', 'oa'];
+                        $limit_designation = ['purp', 'facu', 'inst', 'lib', 'lab', 'sps', 'ppf', 'socd', 'oa', 'exh'];
                     }
 
                     if (Auth::user()->role->code == 'scho_co') {
@@ -43,15 +43,7 @@
                         $limit_designation = ['ppf', 'sps', 'socd'];
                     }
 
-                    if (Auth::user()->role->code == 'accr') {
-                        $limit_designation = ['purp', 'facu', 'inst', 'lib', 'lab', 'ppf', 'sps', 'socd', 'oa'];
-                    }
-
                     if (Auth::user()->role->code == 'coll_pres') {
-                        $limit_designation = ['purp', 'facu', 'inst', 'lib', 'lab', 'ppf', 'sps', 'socd', 'oa'];
-                    }
-
-                    if (Auth::user()->role->code == 'accr_co') {
                         $limit_designation = ['purp', 'facu', 'inst', 'lib', 'lab', 'ppf', 'sps', 'socd', 'oa'];
                     }
 
@@ -60,7 +52,7 @@
                     }
 
                     if (Auth::user()->role->code == 'paascu') {
-                        $limit_designation = ['purp'];
+                        $limit_designation = ['purp', 'exh'];
                     }
 
                     if (Auth::user()->role->code == 'admin') {

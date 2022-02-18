@@ -23,18 +23,25 @@
                          placeholder="Please enter access code to view or download file" />
                  </div>
              @else
-                 <div class="flex items-center justify-end py-3 text-right my-5">
-                     <x-jet-button type="button" wire:click.prevent="createShowModal"
-                         class="px-2 py-3 ml-5 rounded-lg capitalize font-light">
-                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20"
-                             fill="currentColor">
-                             <path fill-rule="evenodd"
-                                 d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z"
-                                 clip-rule="evenodd" />
-                         </svg> &nbsp;Upload file
-                     </x-jet-button>
-                 </div>
+                 @if ($desig->code == 'exh' && Auth::user()->role->code == 'paascu')
+                 @else
+                     <div class="flex items-center justify-end py-3 text-right my-5">
+                         <x-jet-button type="button" wire:click.prevent="createShowModal"
+                             class="px-2 py-3 ml-5 rounded-lg capitalize font-light">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20"
+                                 fill="currentColor">
+                                 <path fill-rule="evenodd"
+                                     d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z"
+                                     clip-rule="evenodd" />
+                             </svg> &nbsp;Upload file
+                         </x-jet-button>
+                     </div>
+                 @endif
              @endif
+         @endif
+
+         @if ($desig != null)
+             @include('livewire.includes.search-bar')
          @endif
 
          @if ($desig == null)
@@ -133,38 +140,52 @@
                                                              </x-jet-button>
                                                          @endif
                                                      @else
-                                                         <x-jet-button
-                                                             wire:click="downloadFile('{{ $item->file_name }}')"
-                                                             class="px-1 py-1 rounded-full bg-blue-200 hover:bg-blue-300 active:hover:bg-blue-300 text-blue-900">
-                                                             <svg xmlns="http://www.w3.org/2000/svg"
-                                                                 class="h-4 w-4" viewBox="0 0 20 20"
-                                                                 fill="currentColor">
-                                                                 <path fill-rule="evenodd"
-                                                                     d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z"
-                                                                     clip-rule="evenodd" />
-                                                             </svg>
-                                                         </x-jet-button>
-                                                         <x-jet-button
-                                                             wire:click="updateShowModal({{ $item->id }})"
-                                                             class="px-1 py-1 rounded-full bg-green-200 hover:bg-green-300 active:hover:bg-green-300 text-green-900">
-                                                             <svg xmlns="http://www.w3.org/2000/svg"
-                                                                 class="h-4 w-4" viewBox="0 0 20 20"
-                                                                 fill="currentColor">
-                                                                 <path
-                                                                     d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-                                                             </svg>
-                                                         </x-jet-button>
-                                                         <x-jet-danger-button
-                                                             wire:click="deleteShowModal({{ $item->id }})"
-                                                             class="px-1 py-1 rounded-full bg-red-200 hover:bg-red-300 active:hover:bg-red-300 text-red-900">
-                                                             <svg xmlns="http://www.w3.org/2000/svg"
-                                                                 class="h-4 w-4" viewBox="0 0 20 20"
-                                                                 fill="currentColor">
-                                                                 <path fill-rule="evenodd"
-                                                                     d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                                     clip-rule="evenodd" />
-                                                             </svg>
+                                                         @if ($desig->code == 'exh' && Auth::user()->role->code == 'paascu')
+                                                             <x-jet-button
+                                                                 wire:click="downloadFile('{{ $item->file_name }}')"
+                                                                 class="px-1 py-1 rounded-full bg-blue-200 hover:bg-blue-300 active:hover:bg-blue-300 text-blue-900">
+                                                                 <svg xmlns="http://www.w3.org/2000/svg"
+                                                                     class="h-4 w-4" viewBox="0 0 20 20"
+                                                                     fill="currentColor">
+                                                                     <path fill-rule="evenodd"
+                                                                         d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z"
+                                                                         clip-rule="evenodd" />
+                                                                 </svg>
                                                              </x-jet-button>
+                                                         @else
+                                                             <x-jet-button
+                                                                 wire:click="downloadFile('{{ $item->file_name }}')"
+                                                                 class="px-1 py-1 rounded-full bg-blue-200 hover:bg-blue-300 active:hover:bg-blue-300 text-blue-900">
+                                                                 <svg xmlns="http://www.w3.org/2000/svg"
+                                                                     class="h-4 w-4" viewBox="0 0 20 20"
+                                                                     fill="currentColor">
+                                                                     <path fill-rule="evenodd"
+                                                                         d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z"
+                                                                         clip-rule="evenodd" />
+                                                                 </svg>
+                                                             </x-jet-button>
+                                                             <x-jet-button
+                                                                 wire:click="updateShowModal({{ $item->id }})"
+                                                                 class="px-1 py-1 rounded-full bg-green-200 hover:bg-green-300 active:hover:bg-green-300 text-green-900">
+                                                                 <svg xmlns="http://www.w3.org/2000/svg"
+                                                                     class="h-4 w-4" viewBox="0 0 20 20"
+                                                                     fill="currentColor">
+                                                                     <path
+                                                                         d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                                                                 </svg>
+                                                             </x-jet-button>
+                                                             <x-jet-danger-button
+                                                                 wire:click="deleteShowModal({{ $item->id }})"
+                                                                 class="px-1 py-1 rounded-full bg-red-200 hover:bg-red-300 active:hover:bg-red-300 text-red-900">
+                                                                 <svg xmlns="http://www.w3.org/2000/svg"
+                                                                     class="h-4 w-4" viewBox="0 0 20 20"
+                                                                     fill="currentColor">
+                                                                     <path fill-rule="evenodd"
+                                                                         d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                                         clip-rule="evenodd" />
+                                                                 </svg>
+                                                                 </x-jet-button>
+                                                         @endif
                                                      @endif
                                                  </td>
                                              </tr>
@@ -199,20 +220,26 @@
                      <x-jet-label for="title" value="{{ __('Title') }}" class="mb-2" />
                      <x-jet-input id="title" class="block mt-1 w-full text-sm" type="text"
                          wire:model.debounce.800ms="title" />
-                     @error('title') <span class="error">{{ $message }}</span> @enderror
+                     @error('title')
+                         <span class="error">{{ $message }}</span>
+                     @enderror
                  </div>
                  <div class="mt-4">
                      <x-jet-label for="description" value="{{ __('Description') }}" class="mb-2" />
                      <x-jet-input id="description" class="block mt-1 w-full text-sm" type="text"
                          wire:model.debounce.800ms="description" />
-                     @error('description') <span class="error">{{ $message }}</span> @enderror
+                     @error('description')
+                         <span class="error">{{ $message }}</span>
+                     @enderror
                  </div>
 
                  <div class="mt-4">
                      <x-jet-label for="files" value="{{ __('Files') }}" class="mb-2" />
                      <x-jet-input id="files" class="block mt-1 w-full text-sm rounded-none" type="file"
                          wire:model="files" />
-                     @error('files') <span class="error">{{ $message }}</span> @enderror
+                     @error('files')
+                         <span class="error">{{ $message }}</span>
+                     @enderror
                  </div>
 
                  @include('livewire.includes.designation-dropdown', ['desig' => $desig])

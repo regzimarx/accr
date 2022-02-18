@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             "sps" => "Student Personnel Services",
             "socd" => "Social Orientation and Community Dev",
             "oa" => "Organization and Administration",
+            "exh" => "Exhibit",
         ];
 
         extract($designations);
@@ -39,15 +40,6 @@ class DatabaseSeeder extends Seeder
 
         $departments = [
             "sys_admin" => "System Administration",
-            "cas" => "College of Arts and Sciences",
-            "ccis" => "College of Computer and Information Sciences",
-            "cba" => "College of Business and Accountancy",
-            "csw" => "College of Social Work",
-            "cmas" => "College of Midwifery and Allied Sciences",
-            "cecd" => "College of Extension and Community Development",
-            "cte" => "College of Teacher Education",
-            "ca" => "College of Agriculture",
-            "ct" => "College of Theology",
             "sao" => "Students Affairs Office",
             "alum" => "Alumni",
             "ext" => "Extensions",
@@ -55,8 +47,8 @@ class DatabaseSeeder extends Seeder
             "scho" => "Scholarship",
             "hrdo" => "Human Resources Development Office",
             "lib" => "Library",
-            "accr" => "Accreditor",
             "pres" => "President's Office",
+            "accr" => "College Accreditation",
             "paascu" =>
                 "Philippine Accrediting Association of Schools, Colleges and Universities",
         ];
@@ -75,12 +67,10 @@ class DatabaseSeeder extends Seeder
             "dean" => "Dean",
             "hrdo" => "Human Resources Development Officer",
             "coll_co" => "College Coordinator",
-            "accr_co" => "Accreditation Coordinator",
             "scho_co" => "Scholarship Coordinator",
             "libr" => "Librarian",
             "unit_head" => "Unit Head",
             "board" => "Board of Trustees",
-            "accr" => "Accreditor",
             "coll_pres" => "College President",
             "paascu" => "PAASCU Coordinator",
         ];
